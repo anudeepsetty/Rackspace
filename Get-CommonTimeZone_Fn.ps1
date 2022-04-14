@@ -1,16 +1,54 @@
-﻿
+
 
 function Get-CommonTimeZone 
 {
+    
+    <#
 
+         .SYNOPSIS
+            Function will list TimeZone 
+
+         .DESCRIPTION  
+            Function will list all commonly used time zones in JSON from GitHub and it will parse information and it will list all TimeZones
+
+         .EXAMPLE
+
+            PS> Get-CommonTimeZone
+
+            It will list all timezone information
+         .EXAMPLE
+
+            PS> Get-CommonTimeZone -offset -12
+
+            value                  abbr offset isdst text                                     utc         
+            -----                  ---- ------ ----- ----                                     ---         
+            Dateline Standard Time DST     -12 False (UTC-12:00) International Date Line West {Etc/GMT+12}
+
+          .EXAMPLE
+
+            PS> Get-CommonTimeZone -value 'ASIA'
+
+            value                         abbr  offset isdst text                                utc                                                              
+            -----                         ----  ------ ----- ----                                ---                                                              
+            West Asia Standard Time       WAST       5 False (UTC+05:00) Ashgabat, Tashkent      {Antarctica/Mawson, Asia/Aqtau, Asia/Aqtobe, Asia/Ashgabat...}   
+            Central Asia Standard Time    CAST       6 False (UTC+06:00) Nur-Sultan (Astana)     {Antarctica/Vostok, Asia/Almaty, Asia/Bishkek, Asia/Qyzylorda...}
+            SE Asia Standard Time         SAST       7 False (UTC+07:00) Bangkok, Hanoi, Jakarta {Antarctica/Davis, Asia/Bangkok, Asia/Hovd, Asia/Jakarta...}     
+            N. Central Asia Standard Time NCAST      7 False (UTC+07:00) Novosibirsk             {Asia/Novokuznetsk, Asia/Novosibirsk, Asia/Omsk}                 
+            North Asia Standard Time      NAST       8 False (UTC+08:00) Krasnoyarsk             {Asia/Krasnoyarsk}                                               
+            North Asia East Standard Time NAEST      8 False (UTC+08:00) Irkutsk                 {Asia/Irkutsk}
+         
+    #>
+   
     param(
             [validaterange(-12,+12)]
             [string]$offset,
             [string]$Value
          )
+
+
          if($offset.length -gt 0 -and $Value -gt 0)
          {
-            Write-Error 'Input Parameters are not allowed to supply simulataneously'
+            Write-Error 'Input Parameters are not allowed simulataneously'
          }
          else
          {
@@ -42,3 +80,4 @@ function Get-CommonTimeZone
             }
           }
 }
+
