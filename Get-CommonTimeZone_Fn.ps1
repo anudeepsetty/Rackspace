@@ -60,7 +60,6 @@ function Get-CommonTimeZone
 
             if($Value.Length -gt 0)
             {
-                Write-Host "value"
 
                 if($TimeZoneData | Where value -Like *$value*)
                 {
