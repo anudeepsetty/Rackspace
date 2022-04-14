@@ -84,7 +84,7 @@ function Get-CommonTimeZone
             }
             else
             {
-                $TimeZoneData |Format-Table
+                $TimeZoneData 
             }
           }
 }
