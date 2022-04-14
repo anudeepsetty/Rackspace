@@ -1,5 +1,3 @@
-
-
 function Get-CommonTimeZone 
 {
     
@@ -10,6 +8,11 @@ function Get-CommonTimeZone
 
          .DESCRIPTION  
             Function will list all commonly used time zones in JSON from GitHub and it will parse information and it will list all TimeZones
+
+         
+         .PARAMETER Path
+            Offset - Function will list down timeZones with that offset 
+            Name -  Function will list down timeZones that have the specified string in their name
 
          .EXAMPLE
 
@@ -54,8 +57,6 @@ function Get-CommonTimeZone
          {
             $TimeZoneData= Invoke-RestMethod 'https://raw.githubusercontent.com/dmfilipenko/timezones.json/master/timezones.json'
             
-            $offset
-
 
             if($Value.Length -gt 0)
             {
@@ -63,7 +64,7 @@ function Get-CommonTimeZone
 
                 if($TimeZoneData | Where value -Like *$value*)
                 {
-                    $TimeZoneData | Where value -Like *$value* | Format-Table
+                    $TimeZoneData | Where value -Like *$value* 
                 }
                 else
                 {
@@ -72,7 +73,14 @@ function Get-CommonTimeZone
             }
             elseif($offset.length -gt 0)
             {
-                    $TimeZoneData | Where offset -eq $offset | Format-Table
+                    if($TimeZoneData | Where offset -eq $offset)
+                    {
+                        $TimeZoneData | Where offset -eq $offset 
+                    }
+                    else
+                    {
+                        Write-Host "The Specified Offset $offset doesn't match with any value in GitHub TimeZone Data"
+                    }
             }
             else
             {
@@ -80,4 +88,3 @@ function Get-CommonTimeZone
             }
           }
 }
-
